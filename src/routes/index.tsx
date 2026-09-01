@@ -29,28 +29,34 @@ import rustLogo from "@/assets/rust-programming-language-icon.svg";
 import pythonLogo from "@/assets/Python.svg";
 import pgLogo from "@/assets/postgresql-logo-svgrepo-com.svg";
 
-
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Syncnowise — Smart Software Solutions for Tomorrow" },
+      { title: "Custom Software & SaaS Development | Syncnowise" },
       {
         name: "description",
         content:
-          "Syncnowise builds scalable websites, mobile apps, SaaS platforms, and UI/UX designs for startups and enterprises.",
+          "Syncnowise builds custom software, SaaS products, web applications, and scalable backend systems for startups and growing businesses.",
       },
-      { property: "og:title", content: "Syncnowise — Smart Software Solutions" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:site_name", content: "Syncnowise" },
+      { property: "og:title", content: "Custom Software & SaaS Development | Syncnowise" },
       {
         property: "og:description",
         content:
-          "Website, mobile, SaaS, and UI/UX engineering partner for ambitious teams.",
+          "Syncnowise builds custom software, SaaS products, web applications, and scalable backend systems for startups and growing businesses.",
       },
-      { name: "twitter:title", content: "Syncnowise" },
+      { property: "og:image", content: "https://syncnowise.com/syncnowise-logo.png" },
+      { property: "og:image:width", content: "1920" },
+      { property: "og:image:height", content: "385" },
+      { property: "og:image:alt", content: "Syncnowise" },
+      { name: "twitter:title", content: "Custom Software & SaaS Development | Syncnowise" },
       {
         name: "twitter:description",
-        content: "Modern software development for startups & enterprises.",
+        content:
+          "Syncnowise builds custom software, SaaS products, web applications, and scalable backend systems for startups and growing businesses.",
       },
+      { name: "twitter:image", content: "https://syncnowise.com/syncnowise-logo.png" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://syncnowise.com/" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -67,6 +73,7 @@ export const Route = createFileRoute("/")({
               "@id": "https://syncnowise.com/#organization",
               name: "Syncnowise",
               url: "https://syncnowise.com/",
+              logo: "https://syncnowise.com/syncnowise-logo.png",
               email: "syncnowise@gmail.com",
               telephone: "+91-7874378168",
               address: {
@@ -91,10 +98,9 @@ export const Route = createFileRoute("/")({
               "@id": "https://syncnowise.com/#business",
               name: "Syncnowise",
               url: "https://syncnowise.com/",
-              image: "https://syncnowise.com/favicon.png",
+              image: "https://syncnowise.com/syncnowise-logo.png",
               telephone: "+91-7874378168",
               email: "syncnowise@gmail.com",
-              priceRange: "$$",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Ahmedabad",
@@ -103,10 +109,10 @@ export const Route = createFileRoute("/")({
               },
               areaServed: "Worldwide",
               makesOffer: [
-                "Website Development",
-                "Mobile App Development",
-                "SaaS Platform Development",
-                "UI/UX Design",
+                "Custom Software Development",
+                "SaaS & MVP Development",
+                "Backend & Systems Engineering",
+                "Automation & AI Solutions",
               ].map((name) => ({
                 "@type": "Offer",
                 itemOffered: {
@@ -115,6 +121,24 @@ export const Route = createFileRoute("/")({
                   provider: { "@id": "https://syncnowise.com/#organization" },
                 },
               })),
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://syncnowise.com/#website",
+              url: "https://syncnowise.com/",
+              name: "Syncnowise",
+              publisher: { "@id": "https://syncnowise.com/#organization" },
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://syncnowise.com/#webpage",
+              url: "https://syncnowise.com/",
+              name: "Custom Software & SaaS Development | Syncnowise",
+              description:
+                "Syncnowise builds custom software, SaaS products, web applications, and scalable backend systems for startups and growing businesses.",
+              isPartOf: { "@id": "https://syncnowise.com/#website" },
+              about: { "@id": "https://syncnowise.com/#organization" },
+              inLanguage: "en",
             },
           ],
         }),
@@ -172,8 +196,10 @@ const I = {
   ),
   server: (p: any) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" {...p}>
-      <rect x="3" y="4" width="18" height="7" rx="1.5" /><rect x="3" y="13" width="18" height="7" rx="1.5" />
-      <circle cx="7" cy="7.5" r="0.8" fill="currentColor" /><circle cx="7" cy="16.5" r="0.8" fill="currentColor" />
+      <rect x="3" y="4" width="18" height="7" rx="1.5" />
+      <rect x="3" y="13" width="18" height="7" rx="1.5" />
+      <circle cx="7" cy="7.5" r="0.8" fill="currentColor" />
+      <circle cx="7" cy="16.5" r="0.8" fill="currentColor" />
     </svg>
   ),
   strategy: (p: any) => (
@@ -188,7 +214,8 @@ const I = {
   ),
   shield: (p: any) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" {...p}>
-      <path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" />
+      <path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z" />
+      <path d="M9 12l2 2 4-4" />
     </svg>
   ),
   support: (p: any) => (
@@ -213,12 +240,14 @@ const I = {
   ),
   tag: (p: any) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" {...p}>
-      <path d="M20 12l-8 8-9-9V3h8l9 9z" /><circle cx="7.5" cy="7.5" r="1.2" />
+      <path d="M20 12l-8 8-9-9V3h8l9 9z" />
+      <circle cx="7.5" cy="7.5" r="1.2" />
     </svg>
   ),
   clock: (p: any) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" {...p}>
-      <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
     </svg>
   ),
 };
@@ -338,10 +367,26 @@ const WHY_US = [
 ];
 
 const RESULTS = [
-  { icon: I.star, title: "Real Client Experience", desc: "Projects delivered for businesses with real-world requirements and business goals." },
-  { icon: I.server, title: "Engineering-First Approach", desc: "We focus on building software that is reliable, maintainable, and designed to grow with your business." },
-  { icon: I.chat, title: "Direct Collaboration", desc: "Work directly with the people building your product, with clear communication throughout the project." },
-  { icon: I.design, title: "Built Around Your Needs", desc: "Every project starts with understanding your business—not forcing you into a pre-built solution." },
+  {
+    icon: I.star,
+    title: "Real Client Experience",
+    desc: "Projects delivered for businesses with real-world requirements and business goals.",
+  },
+  {
+    icon: I.server,
+    title: "Engineering-First Approach",
+    desc: "We focus on building software that is reliable, maintainable, and designed to grow with your business.",
+  },
+  {
+    icon: I.chat,
+    title: "Direct Collaboration",
+    desc: "Work directly with the people building your product, with clear communication throughout the project.",
+  },
+  {
+    icon: I.design,
+    title: "Built Around Your Needs",
+    desc: "Every project starts with understanding your business—not forcing you into a pre-built solution.",
+  },
 ];
 
 const ABOUT_POINTS = [
@@ -441,7 +486,6 @@ const CASE_STUDIES = [
   },
 ];
 
-
 const WORK_STEPS = [
   {
     n: "01",
@@ -508,7 +552,6 @@ const TESTIMONIALS = [
   },
 ];
 
-
 const CULTURE = [
   {
     icon: I.shield,
@@ -547,7 +590,7 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.12 },
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -573,7 +616,7 @@ function HomePage() {
   const activeStudy = activeCase !== null ? CASE_STUDIES[activeCase] : null;
   const moreProjects = useMemo(
     () => PROJECTS.filter((p) => !CASE_STUDIES.some((c) => c.title === p.title)),
-    []
+    [],
   );
 
   return (
@@ -581,7 +624,9 @@ function HomePage() {
       {/* Navbar */}
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all ${
-          scrolled ? "bg-white/90 backdrop-blur border-b border-border shadow-sm" : "bg-white/60 backdrop-blur"
+          scrolled
+            ? "bg-white/90 backdrop-blur border-b border-border shadow-sm"
+            : "bg-white/60 backdrop-blur"
         }`}
       >
         <div className="container-x flex items-center justify-between h-16">
@@ -600,7 +645,9 @@ function HomePage() {
             ))}
           </nav>
           <div className="hidden lg:block">
-            <a href="#contact" className="btn-primary text-sm whitespace-nowrap">Get Started</a>
+            <a href="#contact" className="btn-primary text-sm whitespace-nowrap">
+              Get Started
+            </a>
           </div>
 
           <button
@@ -608,7 +655,14 @@ function HomePage() {
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               {menuOpen ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
             </svg>
           </button>
@@ -626,7 +680,11 @@ function HomePage() {
                   {n.label}
                 </a>
               ))}
-              <a href="#contact" onClick={() => setMenuOpen(false)} className="btn-primary text-sm mt-2 w-full">
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="btn-primary text-sm mt-2 w-full"
+              >
                 Get Started
               </a>
             </div>
@@ -650,7 +708,10 @@ function HomePage() {
           />
           <div className="absolute inset-0 dot-grid opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_70%)]" />
 
-          <svg className="absolute inset-0 w-full h-full opacity-[0.05]" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="absolute inset-0 w-full h-full opacity-[0.05]"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <defs>
               <pattern id="hgrid" width="64" height="64" patternUnits="userSpaceOnUse">
                 <path d="M64 0H0V64" fill="none" stroke="#0F172A" strokeWidth="1" />
@@ -659,9 +720,6 @@ function HomePage() {
             <rect width="100%" height="100%" fill="url(#hgrid)" />
           </svg>
         </div>
-
-
-
 
         <div className="container-x relative z-10 flex justify-center">
           {/* centered headline block with the globe animation behind it */}
@@ -674,27 +732,40 @@ function HomePage() {
               <HeroGlobe bare className="absolute inset-0 w-full h-full" />
             </div>
 
-
             <span
               className="hero-item inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border bg-white/80 backdrop-blur"
-              style={{ animationDelay: "0.05s", borderColor: "rgba(37,99,235,0.25)", color: "#1E3A8A" }}
+              style={{
+                animationDelay: "0.05s",
+                borderColor: "rgba(37,99,235,0.25)",
+                color: "#1E3A8A",
+              }}
             >
               <span className="relative flex w-2 h-2">
                 <span className="absolute inline-flex w-full h-full rounded-full bg-primary opacity-70 ping-soft" />
                 <span className="relative inline-flex rounded-full w-2 h-2 bg-primary" />
               </span>
-              
             </span>
 
             <h1
               className="hero-item font-display mt-6 font-extrabold tracking-tight leading-[1.02] text-[40px] sm:text-[58px] lg:text-[54px] xl:text-[64px] text-[#0F172A]"
               style={{ animationDelay: "0.15s" }}
             >
-              Build Software That Moves Your{" "}
+              Custom Software &amp; SaaS Development for{" "}
               <span className="relative inline-block">
-                <span className="animated-gradient-text">Business Forward.</span>
-                <svg className="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 300 10" fill="none" preserveAspectRatio="none">
-                  <path d="M2 7 C 80 2, 160 2, 298 6" stroke="url(#uline)" strokeWidth="3" strokeLinecap="round" />
+                <span className="animated-gradient-text">Growing Businesses</span>
+                <svg
+                  className="absolute -bottom-2 left-0 w-full"
+                  height="10"
+                  viewBox="0 0 300 10"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M2 7 C 80 2, 160 2, 298 6"
+                    stroke="url(#uline)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                  />
                   <defs>
                     <linearGradient id="uline" x1="0" x2="1">
                       <stop offset="0" stopColor="#2563EB" />
@@ -706,11 +777,19 @@ function HomePage() {
             </h1>
 
             <p
-              className="hero-item mt-7 text-[17px] lg:text-[18px] leading-relaxed text-[#4B5563] max-w-xl mx-auto"
+              className="hero-item mt-5 font-display text-xl md:text-2xl font-semibold text-[#1F2937]"
+              style={{ animationDelay: "0.2s" }}
+            >
+              Build Software That Moves Your Business Forward.
+            </p>
+
+            <p
+              className="hero-item mt-5 text-[17px] lg:text-[18px] leading-relaxed text-[#4B5563] max-w-xl mx-auto"
               style={{ animationDelay: "0.25s" }}
             >
               <strong className="text-[#0F172A] font-semibold">
-                Custom software, SaaS products, and high-performance backend systems built for startups and growing businesses.
+                Custom software, SaaS products, and high-performance backend systems built for
+                startups and growing businesses.
               </strong>
             </p>
 
@@ -718,7 +797,8 @@ function HomePage() {
               className="hero-item mt-4 text-[17px] lg:text-[18px] leading-relaxed text-[#4B5563] max-w-xl mx-auto"
               style={{ animationDelay: "0.3s" }}
             >
-              At Syncnowise, we turn ideas and business challenges into reliable, scalable software — from MVPs and web applications to complex backend and distributed systems.
+              At Syncnowise, we turn ideas and business challenges into reliable, scalable software
+              — from MVPs and web applications to complex backend and distributed systems.
             </p>
 
             <div
@@ -741,7 +821,11 @@ function HomePage() {
                 className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-[#1F2937] bg-white border border-border hover:border-primary/40 transition-colors"
               >
                 View our work
-                <I.arrow width="16" height="16" className="transition-transform group-hover:translate-x-1" />
+                <I.arrow
+                  width="16"
+                  height="16"
+                  className="transition-transform group-hover:translate-x-1"
+                />
               </a>
             </div>
 
@@ -752,15 +836,22 @@ function HomePage() {
               <div className="flex items-center gap-3">
                 <div className="flex -space-x-2">
                   {[test1, test2, test3, team1, team2].map((src, i) => (
-                    <img key={i} src={src} alt="" className="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" />
+                    <img
+                      key={i}
+                      src={src}
+                      alt=""
+                      className="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm"
+                    />
                   ))}
                 </div>
                 <div className="flex flex-col text-left">
                   <div className="flex items-center gap-1 text-amber-500">
-                    {[0, 1, 2, 3, 4].map((i) => (<I.star key={i} width="12" height="12" />))}
+                    {[0, 1, 2, 3, 4].map((i) => (
+                      <I.star key={i} width="12" height="12" />
+                    ))}
                     <span className="ml-1 text-xs font-bold text-[#0F172A]">4.9/5</span>
                   </div>
-                  <span className="text-[11px] text-subtle">from 4  + client reviews</span>
+                  <span className="text-[11px] text-subtle">from 4 + client reviews</span>
                 </div>
               </div>
               <span className="hidden sm:inline w-px h-8 bg-border" />
@@ -770,35 +861,36 @@ function HomePage() {
               </div>
             </div>
           </div>
-
-
-
         </div>
       </section>
-
-
-
-
-
 
       {/* Real Work. Real Results. */}
       <section id="results" className="section-y bg-white relative overflow-hidden">
         <div className="container-x relative">
           <div className="reveal max-w-3xl mx-auto text-center">
-            <span className="section-kicker justify-center"><span className="section-kicker-dot" />Proven Results</span>
+            <span className="section-kicker justify-center">
+              <span className="section-kicker-dot" />
+              Proven Results
+            </span>
             <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold tracking-tight text-navy leading-tight">
               Real Work. Real Results.
             </h2>
             <p className="mt-5 text-lg font-semibold text-navy leading-relaxed">
-              We don't believe in filling our portfolio with promises. We believe in showing the work.
+              We don't believe in filling our portfolio with promises. We believe in showing the
+              work.
             </p>
             <p className="mt-3 text-lg text-muted leading-relaxed">
-              Syncnowise has delivered software solutions for real businesses across different industries, helping clients turn their ideas and business requirements into practical digital products.
+              Syncnowise has delivered software solutions for real businesses across different
+              industries, helping clients turn their ideas and business requirements into practical
+              digital products.
             </p>
           </div>
 
           <div className="mt-14 text-center">
-            <span className="section-kicker justify-center"><span className="section-kicker-dot" />What We Bring</span>
+            <span className="section-kicker justify-center">
+              <span className="section-kicker-dot" />
+              What We Bring
+            </span>
           </div>
 
           <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -842,7 +934,10 @@ function HomePage() {
           </p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center">
             {LOGOS.map((l) => (
-              <div key={l} className="grayscale-logo text-center text-lg font-bold tracking-tight text-navy">
+              <div
+                key={l}
+                className="grayscale-logo text-center text-lg font-bold tracking-tight text-navy"
+              >
                 {l}
               </div>
             ))}
@@ -854,12 +949,16 @@ function HomePage() {
       <section id="services" className="section-y bg-surface relative overflow-hidden">
         <div className="container-x relative">
           <div className="reveal max-w-3xl mx-auto text-center">
-            <span className="section-kicker justify-center"><span className="section-kicker-dot" />What We Do</span>
+            <span className="section-kicker justify-center">
+              <span className="section-kicker-dot" />
+              What We Do
+            </span>
             <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold tracking-tight text-navy leading-tight">
               What We Build
             </h2>
             <p className="mt-5 text-lg text-muted leading-relaxed">
-              From first idea to production-grade systems — software engineered around how your business actually works.
+              From first idea to production-grade systems — software engineered around how your
+              business actually works.
             </p>
           </div>
 
@@ -871,8 +970,14 @@ function HomePage() {
                 style={{ transitionDelay: `${i * 80}ms` }}
                 onMouseMove={(e) => {
                   const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                  (e.currentTarget as HTMLElement).style.setProperty("--mx", `${e.clientX - r.left}px`);
-                  (e.currentTarget as HTMLElement).style.setProperty("--my", `${e.clientY - r.top}px`);
+                  (e.currentTarget as HTMLElement).style.setProperty(
+                    "--mx",
+                    `${e.clientX - r.left}px`,
+                  );
+                  (e.currentTarget as HTMLElement).style.setProperty(
+                    "--my",
+                    `${e.clientY - r.top}px`,
+                  );
                 }}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -885,13 +990,14 @@ function HomePage() {
                   <h3 className="font-display text-xl md:text-2xl font-semibold text-navy leading-snug">
                     {w.title}
                   </h3>
-                  <p className="mt-3 text-sm md:text-base text-muted leading-relaxed">
-                    {w.desc}
-                  </p>
+                  <p className="mt-3 text-sm md:text-base text-muted leading-relaxed">{w.desc}</p>
                 </div>
                 <div className="mt-auto pt-1 flex flex-wrap gap-2">
                   {w.tags.map((tag) => (
-                    <span key={tag} className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary/10 text-primary">
+                    <span
+                      key={tag}
+                      className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary/10 text-primary"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -916,8 +1022,17 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="why-us" className="section-y bg-[color:var(--color-surface)] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+      <section
+        id="why-us"
+        className="section-y bg-[color:var(--color-surface)] relative overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)",
+            backgroundSize: "24px 24px",
+          }}
+        />
         <div className="container-x relative">
           <SectionHeader
             eyebrow="Why Choose Us"
@@ -959,13 +1074,29 @@ function HomePage() {
 
       {/* How We Work — Process timeline */}
       <section id="process" className="section-y bg-navy relative overflow-hidden">
-        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "28px 28px" }} />
-        <div aria-hidden className="pointer-events-none absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/20 blur-3xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-violet-500/20 blur-3xl" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/20 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-violet-500/20 blur-3xl"
+        />
 
         <div className="container-x relative">
           <div className="reveal max-w-2xl mx-auto text-center">
-            <span className="section-kicker justify-center text-white/80"><span className="section-kicker-dot" />Process</span>
+            <span className="section-kicker justify-center text-white/80">
+              <span className="section-kicker-dot" />
+              Process
+            </span>
             <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
               How We Work
             </h2>
@@ -975,8 +1106,14 @@ function HomePage() {
           </div>
 
           <div className="mt-16 md:mt-20 relative">
-            <div aria-hidden className="hidden md:block absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-white/15" />
-            <div aria-hidden className="md:hidden absolute left-5 top-2 bottom-2 w-px bg-white/15" />
+            <div
+              aria-hidden
+              className="hidden md:block absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-white/15"
+            />
+            <div
+              aria-hidden
+              className="md:hidden absolute left-5 top-2 bottom-2 w-px bg-white/15"
+            />
 
             <div className="space-y-10 md:space-y-4">
               {WORK_STEPS.map((s, i) => {
@@ -989,7 +1126,9 @@ function HomePage() {
                 );
                 const content = (
                   <>
-                    <h3 className="mt-1.5 font-display text-lg md:text-xl font-semibold text-white">{s.title}</h3>
+                    <h3 className="mt-1.5 font-display text-lg md:text-xl font-semibold text-white">
+                      {s.title}
+                    </h3>
                     <p className="mt-2 text-sm text-white/60 leading-relaxed">{s.desc}</p>
                   </>
                 );
@@ -1062,17 +1201,25 @@ function HomePage() {
       <section id="portfolio" className="section-y bg-[color:var(--color-surface)]">
         <div className="container-x">
           <div className="reveal max-w-3xl mx-auto text-center">
-            <span className="section-kicker justify-center"><span className="section-kicker-dot" />Our Work</span>
+            <span className="section-kicker justify-center">
+              <span className="section-kicker-dot" />
+              Our Work
+            </span>
             <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold tracking-tight text-navy leading-tight">
               Real Projects. Real Businesses. Real Solutions.
             </h2>
             <p className="mt-5 text-lg text-muted leading-relaxed">
-              Every project we showcase represents work delivered for a real client. We work closely with businesses to understand their requirements, solve their technical challenges, and deliver software that supports their goals.
+              Every project we showcase represents work delivered for a real client. We work closely
+              with businesses to understand their requirements, solve their technical challenges,
+              and deliver software that supports their goals.
             </p>
           </div>
 
           <div className="mt-14 text-center">
-            <span className="section-kicker justify-center"><span className="section-kicker-dot" />Featured Projects</span>
+            <span className="section-kicker justify-center">
+              <span className="section-kicker-dot" />
+              Featured Projects
+            </span>
           </div>
 
           <div className="mt-8 grid md:grid-cols-3 gap-6 lg:gap-7">
@@ -1085,15 +1232,26 @@ function HomePage() {
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img src={c.img} alt={`${c.title} project preview`} loading="lazy" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                  <img
+                    src={c.img}
+                    alt={`${c.title} project preview`}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-5 flex-1 flex flex-col">
-                  <span className="text-xs font-semibold text-primary uppercase tracking-wide">{c.industry}</span>
+                  <span className="text-xs font-semibold text-primary uppercase tracking-wide">
+                    {c.industry}
+                  </span>
                   <h3 className="mt-1.5 font-display text-lg font-semibold text-navy">{c.title}</h3>
                   <p className="mt-2 text-sm text-muted leading-relaxed flex-1">{c.solution}</p>
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
                     View Case Study
-                    <I.arrow width="16" height="16" className="transition-transform group-hover:translate-x-1" />
+                    <I.arrow
+                      width="16"
+                      height="16"
+                      className="transition-transform group-hover:translate-x-1"
+                    />
                   </span>
                 </div>
               </button>
@@ -1107,7 +1265,11 @@ function HomePage() {
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm text-[#1F2937] bg-white border border-border hover:border-primary/40 transition-colors"
             >
               {showMoreWork ? "Hide Additional Projects" : "View All Projects"}
-              <I.arrow width="16" height="16" className={`transition-transform ${showMoreWork ? "-rotate-90" : "rotate-90"}`} />
+              <I.arrow
+                width="16"
+                height="16"
+                className={`transition-transform ${showMoreWork ? "-rotate-90" : "rotate-90"}`}
+              />
             </button>
           </div>
 
@@ -1122,7 +1284,12 @@ function HomePage() {
                   className="fade-pop-in card-lift group bg-white rounded-2xl overflow-hidden border border-border shadow-[var(--shadow-card)] flex flex-col"
                 >
                   <div className="aspect-[4/3] overflow-hidden">
-                    <img src={p.img} alt={`${p.title} website preview`} loading="lazy" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                    <img
+                      src={p.img}
+                      alt={`${p.title} website preview`}
+                      loading="lazy"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
                   <div className="p-5 flex-1 flex flex-col">
                     <div className="flex items-start justify-between gap-3">
@@ -1134,7 +1301,11 @@ function HomePage() {
                     <p className="mt-2 text-sm text-muted">{p.desc}</p>
                     <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
                       Visit live site
-                      <I.arrow width="16" height="16" className="transition-transform group-hover:translate-x-1" />
+                      <I.arrow
+                        width="16"
+                        height="16"
+                        className="transition-transform group-hover:translate-x-1"
+                      />
                     </span>
                   </div>
                 </a>
@@ -1165,12 +1336,20 @@ function HomePage() {
 
                 <div className="modal-scroll max-h-[85vh] overflow-y-auto">
                   <div className="relative aspect-[16/9] overflow-hidden">
-                    <img src={activeStudy.img} alt={`${activeStudy.title} preview`} className="w-full h-full object-cover object-top" />
+                    <img
+                      src={activeStudy.img}
+                      alt={`${activeStudy.title} preview`}
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
                   <div className="p-6 md:p-7">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary/10 text-primary">{activeStudy.industry}</span>
-                      <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-surface border border-border text-muted">{activeStudy.services}</span>
+                      <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary/10 text-primary">
+                        {activeStudy.industry}
+                      </span>
+                      <span className="text-xs font-semibold px-3 py-1.5 rounded-full bg-surface border border-border text-muted">
+                        {activeStudy.services}
+                      </span>
                     </div>
                     <Dialog.Title className="mt-3.5 font-display text-xl md:text-2xl font-bold text-navy">
                       {activeStudy.title}
@@ -1178,16 +1357,28 @@ function HomePage() {
 
                     <div className="mt-5 space-y-4">
                       <div>
-                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary">The Challenge</h4>
-                        <p className="mt-1.5 text-sm leading-relaxed text-muted">{activeStudy.challenge}</p>
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary">
+                          The Challenge
+                        </h4>
+                        <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                          {activeStudy.challenge}
+                        </p>
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary">What We Built</h4>
-                        <p className="mt-1.5 text-sm leading-relaxed text-muted">{activeStudy.solution}</p>
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary">
+                          What We Built
+                        </h4>
+                        <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                          {activeStudy.solution}
+                        </p>
                       </div>
                       <div className="rounded-xl bg-surface border border-border p-4">
-                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary">The Outcome</h4>
-                        <p className="mt-1.5 text-sm leading-relaxed text-navy italic">"{activeStudy.outcome}"</p>
+                        <h4 className="text-xs font-bold uppercase tracking-widest text-primary">
+                          The Outcome
+                        </h4>
+                        <p className="mt-1.5 text-sm leading-relaxed text-navy italic">
+                          "{activeStudy.outcome}"
+                        </p>
                         <p className="mt-1 text-xs text-subtle">{activeStudy.outcomeAttribution}</p>
                       </div>
                     </div>
@@ -1222,13 +1413,20 @@ function HomePage() {
       <section id="testimonials" className="section-y bg-[color:var(--color-surface)]">
         <div className="container-x">
           <div className="reveal max-w-2xl mx-auto text-center">
-            <span className="section-kicker justify-center"><span className="section-kicker-dot" />Testimonials</span>
+            <span className="section-kicker justify-center">
+              <span className="section-kicker-dot" />
+              Testimonials
+            </span>
             <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold tracking-tight text-navy leading-tight">
               What Our Clients Say
             </h2>
-            <p className="mt-5 text-lg font-semibold text-navy">Trusted Through Real Collaboration</p>
+            <p className="mt-5 text-lg font-semibold text-navy">
+              Trusted Through Real Collaboration
+            </p>
             <p className="mt-3 text-muted leading-relaxed">
-              We value the relationships we build with our clients. Their feedback reflects how we approach projects — from understanding the initial requirement to delivering and supporting the final solution.
+              We value the relationships we build with our clients. Their feedback reflects how we
+              approach projects — from understanding the initial requirement to delivering and
+              supporting the final solution.
             </p>
           </div>
 
@@ -1269,18 +1467,35 @@ function HomePage() {
 
       {/* Engineering Capabilities */}
       <section id="capabilities" className="section-y bg-navy relative overflow-hidden">
-        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "28px 28px" }} />
-        <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/20 blur-3xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-violet-500/20 blur-3xl" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/20 blur-3xl"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-violet-500/20 blur-3xl"
+        />
 
         <div className="container-x relative">
           <div className="reveal max-w-2xl mx-auto text-center">
-            <span className="section-kicker justify-center text-white/80"><span className="section-kicker-dot" />Engineering Capabilities</span>
+            <span className="section-kicker justify-center text-white/80">
+              <span className="section-kicker-dot" />
+              Engineering Capabilities
+            </span>
             <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight">
               Strong Engineering. Practical Solutions.
             </h2>
             <p className="mt-4 text-lg text-white/60 leading-relaxed">
-              We combine product-focused development with strong engineering fundamentals to build software that is reliable, maintainable, and ready to evolve.
+              We combine product-focused development with strong engineering fundamentals to build
+              software that is reliable, maintainable, and ready to evolve.
             </p>
           </div>
 
@@ -1307,7 +1522,9 @@ function HomePage() {
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className={`text-sm font-semibold whitespace-nowrap lg:whitespace-normal transition-colors ${active ? "text-navy" : "text-white/70 group-hover:text-white"}`}>
+                    <span
+                      className={`text-sm font-semibold whitespace-nowrap lg:whitespace-normal transition-colors ${active ? "text-navy" : "text-white/70 group-hover:text-white"}`}
+                    >
                       {c.title}
                     </span>
                   </button>
@@ -1320,9 +1537,15 @@ function HomePage() {
               key={openCap}
               className="cap-panel-in relative rounded-2xl border border-white/10 bg-white/[0.03] p-7 md:p-9 overflow-hidden"
             >
-              <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 w-64 h-64 rounded-full bg-primary/15 blur-3xl" />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-16 -right-16 w-64 h-64 rounded-full bg-primary/15 blur-3xl"
+              />
               <div className="relative w-12 h-12 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white">
-                {(() => { const Icon = CAPABILITIES[openCap].icon; return <Icon width="22" height="22" />; })()}
+                {(() => {
+                  const Icon = CAPABILITIES[openCap].icon;
+                  return <Icon width="22" height="22" />;
+                })()}
               </div>
               <h3 className="relative mt-5 font-display text-xl md:text-2xl font-semibold text-white">
                 {CAPABILITIES[openCap].title}
@@ -1341,7 +1564,10 @@ function HomePage() {
                         <img src={t.logo} alt="" className="w-full h-full object-contain" />
                       </span>
                     ) : (
-                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: "#93C5FD" }} />
+                      <span
+                        className="w-1.5 h-1.5 rounded-full shrink-0"
+                        style={{ backgroundColor: "#93C5FD" }}
+                      />
                     )}
                     <span className="text-xs font-medium">{t.label}</span>
                   </span>
@@ -1366,15 +1592,20 @@ function HomePage() {
       <section id="pricing" className="section-y bg-white relative overflow-hidden">
         <div className="container-x relative">
           <div className="reveal max-w-2xl mx-auto text-center">
-            <span className="section-kicker justify-center"><span className="section-kicker-dot" />Pricing</span>
+            <span className="section-kicker justify-center">
+              <span className="section-kicker-dot" />
+              Pricing
+            </span>
             <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold tracking-tight text-navy leading-tight">
               Project Pricing
             </h2>
             <p className="mt-5 text-lg text-muted leading-relaxed">
-              Every project is different. We scope our work around your requirements, complexity, timeline, and goals rather than forcing projects into fixed packages.
+              Every project is different. We scope our work around your requirements, complexity,
+              timeline, and goals rather than forcing projects into fixed packages.
             </p>
             <p className="mt-3 text-muted leading-relaxed">
-              Whether you need a focused development engagement or a complete software product, we'll define the scope and provide a clear proposal before development begins.
+              Whether you need a focused development engagement or a complete software product,
+              we'll define the scope and provide a clear proposal before development begins.
             </p>
           </div>
 
@@ -1391,7 +1622,8 @@ function HomePage() {
               <I.arrow width="16" height="16" />
             </a>
             <p className="text-sm text-subtle text-center max-w-md">
-              Not sure what you need yet? That's okay — tell us about the problem you're trying to solve.
+              Not sure what you need yet? That's okay — tell us about the problem you're trying to
+              solve.
             </p>
           </div>
         </div>
@@ -1453,25 +1685,52 @@ function HomePage() {
               <div className="mt-6 space-y-3 text-sm">
                 <div className="flex items-start gap-3">
                   <span className="mt-0.5 text-primary/80 shrink-0">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                       <circle cx="12" cy="10" r="3" />
                     </svg>
                   </span>
                   <span className="text-white/70">Ahmedabad, Gujarat, India</span>
                 </div>
-                <a href="mailto:syncnowise@gmail.com" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
+                <a
+                  href="mailto:syncnowise@gmail.com"
+                  className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
+                >
                   <span className="text-primary/80 shrink-0">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                       <path d="M22 6l-10 7L2 6" />
                     </svg>
                   </span>
                   syncnowise@gmail.com
                 </a>
-                <a href="tel:+917874378168" className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
+                <a
+                  href="tel:+917874378168"
+                  className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
+                >
                   <span className="text-primary/80 shrink-0">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
                   </span>
@@ -1486,7 +1745,10 @@ function HomePage() {
               <ul className="mt-4 space-y-2">
                 {NAV.map((n) => (
                   <li key={n.href}>
-                    <a href={n.href} className="text-sm text-white/65 hover:text-white transition-colors">
+                    <a
+                      href={n.href}
+                      className="text-sm text-white/65 hover:text-white transition-colors"
+                    >
                       {n.label}
                     </a>
                   </li>
@@ -1500,7 +1762,10 @@ function HomePage() {
               <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-y-2 gap-x-4">
                 {WHAT_WE_BUILD.map((w) => (
                   <li key={w.title}>
-                    <a href="#services" className="text-sm text-white/65 hover:text-white transition-colors">
+                    <a
+                      href="#services"
+                      className="text-sm text-white/65 hover:text-white transition-colors"
+                    >
                       {w.title}
                     </a>
                   </li>
@@ -1512,24 +1777,47 @@ function HomePage() {
             <div className="lg:col-span-3">
               <h4 className="text-white font-semibold text-sm tracking-wide">Follow Us</h4>
               <div className="mt-4 flex items-center gap-3">
-                <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all">
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all"
+                >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                 </a>
-                <a href="#" aria-label="Twitter / X" className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all">
+                <a
+                  href="#"
+                  aria-label="Twitter / X"
+                  className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all"
+                >
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
-                <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
                     <rect x="2" y="2" width="20" height="20" rx="5" />
                     <circle cx="12" cy="12" r="4" />
                     <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
                   </svg>
                 </a>
-                <a href="#" aria-label="GitHub" className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all">
+                <a
+                  href="#"
+                  aria-label="GitHub"
+                  className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all"
+                >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
                   </svg>
@@ -1547,9 +1835,15 @@ function HomePage() {
                 <span>Crafted with precision in Ahmedabad, India</span>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-5">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-white transition-colors">Security</a>
+                <a href="#" className="hover:text-white transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="hover:text-white transition-colors">
+                  Terms of Service
+                </a>
+                <a href="#" className="hover:text-white transition-colors">
+                  Security
+                </a>
               </div>
             </div>
           </div>
@@ -1622,12 +1916,15 @@ function AboutSection() {
           <AboutImageCarousel />
         </div>
         <div className="reveal">
-          <div className="text-xs font-semibold tracking-widest uppercase text-primary">About Syncnowise</div>
+          <div className="text-xs font-semibold tracking-widest uppercase text-primary">
+            About Syncnowise
+          </div>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
             Engineering software with a focus on what matters.
           </h2>
           <p className="mt-4 text-muted leading-relaxed">
-            We combine engineering rigor with direct, honest collaboration — building real software for real businesses, designed to hold up long after launch.
+            We combine engineering rigor with direct, honest collaboration — building real software
+            for real businesses, designed to hold up long after launch.
           </p>
           <ul className="mt-8 space-y-3">
             {ABOUT_POINTS.map((point) => (
@@ -1645,7 +1942,13 @@ function AboutSection() {
   );
 }
 
-const BUDGET_OPTIONS = ["Not sure yet", "Under $2,000", "$2,000–$5,000", "$5,000–$10,000", "$10,000+"];
+const BUDGET_OPTIONS = [
+  "Not sure yet",
+  "Under $2,000",
+  "$2,000–$5,000",
+  "$5,000–$10,000",
+  "$10,000+",
+];
 const TIMELINE_OPTIONS = ["ASAP", "Within 1 month", "1–3 months", "Just exploring"];
 
 function ContactSection() {
@@ -1682,19 +1985,31 @@ function ContactSection() {
     try {
       await sendContactEmail({ data: form });
       setSent(true);
-      setForm({ name: "", email: "", company: "", building: "", problem: "", budget: "", timeline: "", details: "" });
+      setForm({
+        name: "",
+        email: "",
+        company: "",
+        building: "",
+        problem: "",
+        budget: "",
+        timeline: "",
+        details: "",
+      });
       setTimeout(() => {
         setSent(false);
         setShowForm(false);
       }, 4000);
     } catch {
-      setSendError("Something went wrong sending your message. Please try again, or email us directly at syncnowise@gmail.com.");
+      setSendError(
+        "Something went wrong sending your message. Please try again, or email us directly at syncnowise@gmail.com.",
+      );
     } finally {
       setSending(false);
     }
   };
 
-  const field = "w-full px-3.5 py-2.5 rounded-lg border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all";
+  const field =
+    "w-full px-3.5 py-2.5 rounded-lg border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all";
 
   return (
     <section id="contact" className="section-y bg-white relative overflow-hidden">
@@ -1710,15 +2025,20 @@ function ContactSection() {
 
       <div className="container-x relative">
         <div className="reveal max-w-2xl mx-auto text-center">
-          <span className="section-kicker justify-center"><span className="section-kicker-dot" />Let's Talk</span>
+          <span className="section-kicker justify-center">
+            <span className="section-kicker-dot" />
+            Let's Talk
+          </span>
           <h2 className="mt-5 font-display text-3xl md:text-5xl font-bold tracking-tight text-navy leading-tight">
             Have a Project in Mind?
           </h2>
           <p className="mt-5 text-lg text-muted leading-relaxed">
-            Whether you're starting something new, improving an existing product, or solving a technical challenge, we'd like to understand what you're building.
+            Whether you're starting something new, improving an existing product, or solving a
+            technical challenge, we'd like to understand what you're building.
           </p>
           <p className="mt-3 text-muted leading-relaxed">
-            Tell us what you're working on, what you need, and where you're stuck. We'll review your requirements and discuss the best way forward.
+            Tell us what you're working on, what you need, and where you're stuck. We'll review your
+            requirements and discuss the best way forward.
           </p>
         </div>
 
@@ -1807,7 +2127,9 @@ function ContactSection() {
                   onChange={(e) => setForm({ ...form, budget: e.target.value })}
                 >
                   <option value="">Select a range</option>
-                  {BUDGET_OPTIONS.map((b) => <option key={b}>{b}</option>)}
+                  {BUDGET_OPTIONS.map((b) => (
+                    <option key={b}>{b}</option>
+                  ))}
                 </select>
               </Field>
               <Field label="When would you like to start? (optional)">
@@ -1817,7 +2139,9 @@ function ContactSection() {
                   onChange={(e) => setForm({ ...form, timeline: e.target.value })}
                 >
                   <option value="">Select a timeline</option>
-                  {TIMELINE_OPTIONS.map((t) => <option key={t}>{t}</option>)}
+                  {TIMELINE_OPTIONS.map((t) => (
+                    <option key={t}>{t}</option>
+                  ))}
                 </select>
               </Field>
             </div>
@@ -1833,8 +2157,13 @@ function ContactSection() {
             </Field>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-1">
-              <button type="submit" disabled={sending} className="btn-primary flex-1 disabled:opacity-60 disabled:cursor-not-allowed">
-                {sending ? "Sending…" : "Start a Project"} {!sending && <I.arrow width="16" height="16" />}
+              <button
+                type="submit"
+                disabled={sending}
+                className="btn-primary flex-1 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {sending ? "Sending…" : "Start a Project"}{" "}
+                {!sending && <I.arrow width="16" height="16" />}
               </button>
               <button
                 type="button"
@@ -1870,7 +2199,15 @@ function ContactSection() {
   );
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({
+  label,
+  error,
+  children,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
   return (
     <label className="block">
       <span className="text-xs font-semibold text-foreground">{label}</span>
