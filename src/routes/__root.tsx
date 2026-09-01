@@ -98,6 +98,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
+    // Google tag (gtag.js) — rendered once for the whole app via the root
+    // route's head, so it's never duplicated across pages.
+    scripts: [
+      { async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-HNPKWDCSLL" },
+      {
+        children: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-HNPKWDCSLL');`,
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
