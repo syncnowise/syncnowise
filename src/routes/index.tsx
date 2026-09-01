@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import HeroGlobe from "@/components/HeroGlobe";
+import { sendContactEmail } from "@/lib/contact-mailer";
 import logo from "@/assets/syncnowise-logo.png";
 import heroImg from "@/assets/hero-illustration.jpg";
-import projSaas from "@/assets/project-saas.jpg";
 import workRubber from "@/assets/work-rubber-form-builder.jpg";
 import workBlanconite from "@/assets/work-blanconite-artistry-hub.jpg";
 import workNebula from "@/assets/work-nebula-orthosys.jpg";
@@ -12,6 +12,12 @@ import nebulaLogo from "@/assets/nebula-logo.webp";
 import echoPolymerLogo from "@/assets/logo.png";
 import blanconiteLogo from "@/assets/blanconite.png";
 import workDataMinds from "@/assets/work-data-minds-canvas.jpg";
+import projectApp from "@/assets/project-app.jpg";
+import projectEdu from "@/assets/project-edu.jpg";
+import projectFintech from "@/assets/project-fintech.jpg";
+import projectFood from "@/assets/project-food.jpg";
+import projectSaas from "@/assets/project-saas.jpg";
+import projectWeb from "@/assets/project-web.jpg";
 import workArtistry from "@/assets/work-artistry-coming-soon.jpg";
 import team1 from "@/assets/team-1.jpg";
 import team2 from "@/assets/team-2.jpg";
@@ -227,79 +233,6 @@ const NAV = [
   { label: "Contact", href: "#contact" },
 ];
 
-const SERVICES = [
-  {
-    icon: I.web,
-    title: "Web Development",
-    tagline: "Your first impression online, done right.",
-    desc: "Custom websites, e-commerce, landing pages, maintenance.",
-    category: "Product",
-  },
-  {
-    icon: I.mobile,
-    title: "Mobile App Development",
-    tagline: "Your business, in their pocket.",
-    desc: "iOS/Android, cross-platform apps, app maintenance.",
-    category: "Product",
-  },
-  {
-    icon: I.design,
-    title: "UI/UX Design",
-    tagline: "Good design keeps users from leaving.",
-    desc: "Wireframing, prototyping, UX audits.",
-    category: "Product",
-  },
-  {
-    icon: I.saas,
-    title: "Custom Software Development",
-    tagline: "Off-the-shelf fits nobody. We build what fits you.",
-    desc: "ERP/CRM systems, SaaS products, internal tools.",
-    category: "Engineering",
-  },
-  {
-    icon: I.server,
-    title: "Backend & Systems Engineering",
-    tagline: "Speed and reliability, engineered in.",
-    desc: "High-performance backend systems in Go & Rust.",
-    category: "Engineering",
-  },
-  {
-    icon: I.cloud,
-    title: "Cloud Services",
-    tagline: "Stop paying for servers you don't need.",
-    desc: "Cloud migration, AWS/Azure/GCP setup, cost optimization.",
-    category: "Engineering",
-  },
-  {
-    icon: I.shield,
-    title: "Cybersecurity",
-    tagline: "Hackers don't take holidays. Neither do we.",
-    desc: "Security audits, penetration testing, compliance.",
-    category: "Engineering",
-  },
-  {
-    icon: I.support,
-    title: "IT Support & Managed Services",
-    tagline: "Downtime costs more than we do.",
-    desc: "24/7 helpdesk, network setup, troubleshooting.",
-    category: "Engineering",
-  },
-  {
-    icon: I.strategy,
-    title: "IT Consulting & Strategy",
-    tagline: "Get your tech decisions right the first time.",
-    desc: "Infrastructure planning, tech audits, digital transformation.",
-    category: "Growth",
-  },
-  {
-    icon: I.megaphone,
-    title: "Digital Marketing / SEO",
-    tagline: "Built it — now let's get people to it.",
-    desc: "SEO, social media, PPC / Google Ads.",
-    category: "Growth",
-  },
-];
-
 const WHAT_WE_BUILD = [
   {
     icon: I.saas,
@@ -411,11 +344,20 @@ const RESULTS = [
   { icon: I.design, title: "Built Around Your Needs", desc: "Every project starts with understanding your business—not forcing you into a pre-built solution." },
 ];
 
-const STATS = [
-  { n: 50, suffix: "+", label: "Projects Delivered" },
-  { n: 30, suffix: "+", label: "Happy Clients" },
-  { n: 5, suffix: "+", label: "Years Experience" },
-  { n: 100, suffix: "%", label: "Client Satisfaction" },
+const ABOUT_POINTS = [
+  "Real Client Work",
+  "Engineering Expertise",
+  "Direct Collaboration",
+  "Built for the Long Term",
+];
+
+const ABOUT_GALLERY = [
+  { img: projectApp, alt: "Mobile app project" },
+  { img: projectEdu, alt: "Education platform project" },
+  { img: projectFintech, alt: "Fintech dashboard project" },
+  { img: projectFood, alt: "Food & delivery app project" },
+  { img: projectSaas, alt: "SaaS dashboard project" },
+  { img: projectWeb, alt: "Web platform project" },
 ];
 
 const PROJECTS = [
@@ -424,7 +366,7 @@ const PROJECTS = [
     title: "Echo Polymer Industries",
     desc: "Manufacturing website with product catalogue and enquiry forms.",
     tag: "Web",
-    url: "https://rubber-form-builder.lovable.app",
+    url: "https://echopolymers.com",
   },
   {
     img: workBlanconite,
@@ -462,7 +404,7 @@ const CASE_STUDIES = [
     title: "Echo Polymer Industries",
     industry: "Manufacturing — Rubber Extrusion & Moulding",
     services: "Custom Website Development",
-    url: "https://rubber-form-builder.lovable.app",
+    url: "https://echopolymers.com",
     challenge:
       "Buyers couldn't see what Echo Polymer actually manufactures. Without a way to present products online, it was difficult for buyers — especially outside their home region of Rajkot — to evaluate specs and quality before making contact.",
     solution:
@@ -610,23 +552,6 @@ function useReveal() {
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
-}
-
-function useCounter(target: number, run: boolean, duration = 1400) {
-  const [v, setV] = useState(0);
-  useEffect(() => {
-    if (!run) return;
-    let raf = 0;
-    const start = performance.now();
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - start) / duration);
-      setV(Math.round(target * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target, run, duration]);
-  return v;
 }
 
 /* ---------- Page ---------- */
@@ -1569,37 +1494,24 @@ function HomePage() {
               </ul>
             </div>
 
-            {/* Services */}
+            {/* What We Build */}
             <div className="lg:col-span-3">
-              <h4 className="text-white font-semibold text-sm tracking-wide">Services</h4>
+              <h4 className="text-white font-semibold text-sm tracking-wide">What We Build</h4>
               <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-y-2 gap-x-4">
-                {SERVICES.slice(0, 6).map((s) => (
-                  <li key={s.title}>
+                {WHAT_WE_BUILD.map((w) => (
+                  <li key={w.title}>
                     <a href="#services" className="text-sm text-white/65 hover:text-white transition-colors">
-                      {s.title}
+                      {w.title}
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Newsletter + Social */}
+            {/* Social */}
             <div className="lg:col-span-3">
-              <h4 className="text-white font-semibold text-sm tracking-wide">Stay updated</h4>
-              <p className="mt-4 text-sm text-white/60">Product tips, engineering insights, and company updates.</p>
-              <form onSubmit={(e) => e.preventDefault()} className="mt-4 flex flex-wrap gap-2">
-                <input
-                  type="email"
-                  required
-                  placeholder="you@company.com"
-                  className="flex-1 min-w-0 min-h-11 px-3.5 py-2.5 rounded-xl bg-white/8 border border-white/12 text-sm placeholder-white/35 focus:outline-none focus:border-primary/70 focus:bg-white/10 transition-colors"
-                />
-                <button className="min-h-11 px-5 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-[color:var(--color-primary-600)] transition-colors">
-                  Join
-                </button>
-              </form>
-
-              <div className="mt-6 flex items-center gap-3">
+              <h4 className="text-white font-semibold text-sm tracking-wide">Follow Us</h4>
+              <div className="mt-4 flex items-center gap-3">
                 <a href="#" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -1666,69 +1578,70 @@ function SectionHeader({
   );
 }
 
-function AboutSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
+function AboutImageCarousel() {
+  const [idx, setIdx] = useState(0);
+
   useEffect(() => {
-    if (!ref.current) return;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setInView(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-    io.observe(ref.current);
-    return () => io.disconnect();
+    const id = setInterval(() => {
+      setIdx((i) => (i + 1) % ABOUT_GALLERY.length);
+    }, 3200);
+    return () => clearInterval(id);
   }, []);
 
+  return (
+    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border shadow-[var(--shadow-card)]">
+      {ABOUT_GALLERY.map((g, i) => (
+        <img
+          key={g.alt}
+          src={g.img}
+          alt={g.alt}
+          className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ease-in-out ${
+            i === idx ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+        {ABOUT_GALLERY.map((g, i) => (
+          <span
+            key={g.alt}
+            className={`h-1.5 rounded-full transition-all duration-500 ${
+              i === idx ? "w-6 bg-white" : "w-1.5 bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AboutSection() {
   return (
     <section id="about" className="section-y bg-white">
       <div className="container-x grid lg:grid-cols-2 gap-14 items-center">
         <div className="reveal">
-          <div className="rounded-2xl overflow-hidden border border-border shadow-[var(--shadow-card)]">
-            <img src={projSaas} alt="Syncnowise team" className="w-full h-auto" />
-          </div>
+          <AboutImageCarousel />
         </div>
         <div className="reveal">
-          <div className="text-xs font-semibold tracking-widest uppercase text-primary">About us</div>
+          <div className="text-xs font-semibold tracking-widest uppercase text-primary">About Syncnowise</div>
           <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
-            A trusted engineering partner for modern teams
+            Engineering software with a focus on what matters.
           </h2>
           <p className="mt-4 text-muted leading-relaxed">
-            At Syncnowise, we combine strategy, design, and engineering to help ambitious teams
-            ship products people love. From lean MVPs to enterprise-grade platforms, we bring
-            clarity, craft, and reliability to every project.
+            We combine engineering rigor with direct, honest collaboration — building real software for real businesses, designed to hold up long after launch.
           </p>
-          <div ref={ref} className="mt-10 grid grid-cols-2 gap-4 sm:gap-6">
-            {STATS.map((s) => (
-              <StatCard key={s.label} target={s.n} suffix={s.suffix} label={s.label} run={inView} />
+          <ul className="mt-8 space-y-3">
+            {ABOUT_POINTS.map((point) => (
+              <li key={point} className="flex items-center gap-3 text-foreground font-medium">
+                <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <I.check width="13" height="13" />
+                </span>
+                {point}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </section>
-  );
-}
-
-function StatCard({ target, suffix, label, run }: { target: number; suffix: string; label: string; run: boolean }) {
-  const v = useCounter(target, run);
-  return (
-    <div className="relative overflow-hidden rounded-2xl border border-border bg-[color:var(--color-surface)] p-5 sm:p-6">
-      <span
-        aria-hidden
-        className="absolute left-0 top-5 bottom-5 w-1 rounded-r-full bg-gradient-to-b from-primary to-[#8b5cf6]"
-      />
-      <div className="stat-num tabular-nums">
-        {v}
-        {suffix}
-      </div>
-      <div className="mt-2 text-xs sm:text-sm font-semibold uppercase tracking-wider text-muted">
-        {label}
-      </div>
-    </div>
   );
 }
 
@@ -1749,6 +1662,8 @@ function ContactSection() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -1759,15 +1674,24 @@ function ContactSection() {
     return Object.keys(e).length === 0;
   };
 
-  const submit = (ev: FormEvent) => {
+  const submit = async (ev: FormEvent) => {
     ev.preventDefault();
     if (!validate()) return;
-    setSent(true);
-    setForm({ name: "", email: "", company: "", building: "", problem: "", budget: "", timeline: "", details: "" });
-    setTimeout(() => {
-      setSent(false);
-      setShowForm(false);
-    }, 4000);
+    setSending(true);
+    setSendError("");
+    try {
+      await sendContactEmail({ data: form });
+      setSent(true);
+      setForm({ name: "", email: "", company: "", building: "", problem: "", budget: "", timeline: "", details: "" });
+      setTimeout(() => {
+        setSent(false);
+        setShowForm(false);
+      }, 4000);
+    } catch {
+      setSendError("Something went wrong sending your message. Please try again, or email us directly at syncnowise@gmail.com.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const field = "w-full px-3.5 py-2.5 rounded-lg border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all";
@@ -1909,13 +1833,14 @@ function ContactSection() {
             </Field>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-1">
-              <button type="submit" className="btn-primary flex-1">
-                Start a Project <I.arrow width="16" height="16" />
+              <button type="submit" disabled={sending} className="btn-primary flex-1 disabled:opacity-60 disabled:cursor-not-allowed">
+                {sending ? "Sending…" : "Start a Project"} {!sending && <I.arrow width="16" height="16" />}
               </button>
               <button
                 type="button"
                 onClick={() => setShowForm(false)}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-[#1F2937] bg-white border border-border hover:border-primary/40 transition-colors"
+                disabled={sending}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-[#1F2937] bg-white border border-border hover:border-primary/40 transition-colors disabled:opacity-60"
               >
                 Cancel
               </button>
@@ -1923,6 +1848,11 @@ function ContactSection() {
             {sent && (
               <div className="text-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
                 Thanks! We'll review your requirements and get back to you shortly.
+              </div>
+            )}
+            {sendError && (
+              <div className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                {sendError}
               </div>
             )}
           </form>

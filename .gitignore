@@ -23,6 +23,11 @@ dist-ssr
 # Vercel
 .vercel
 
+# Environment variables (secrets — never commit)
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
