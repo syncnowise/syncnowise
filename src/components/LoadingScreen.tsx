@@ -7,7 +7,9 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     const leaveTimer = setTimeout(() => setLeaving(true), 1100);
-    const removeTimer = setTimeout(() => setMounted(false), 1550);
+    // Unmount only once the 500ms opacity transition (duration-500 below) has
+    // actually finished, instead of cutting it off 50ms early.
+    const removeTimer = setTimeout(() => setMounted(false), 1600);
     return () => {
       clearTimeout(leaveTimer);
       clearTimeout(removeTimer);
@@ -37,6 +39,8 @@ export default function LoadingScreen() {
         <img
           src={logo}
           alt="Syncnowise"
+          width={1920}
+          height={385}
           className="splash-logo-in relative h-11 md:h-12 w-auto object-contain"
         />
         <div className="relative mt-6 w-28 h-[3px] rounded-full bg-border overflow-hidden">
