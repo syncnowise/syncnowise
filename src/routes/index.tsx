@@ -1778,7 +1778,7 @@ function HomePage() {
               <h4 className="text-white font-semibold text-sm tracking-wide">Follow Us</h4>
               <div className="mt-4 flex items-center gap-3">
                 <a
-                  href="#"
+                  href="https://linkedin.com/company/syncnowise"
                   aria-label="LinkedIn"
                   className="w-10 h-10 rounded-full bg-white/8 border border-white/10 hover:bg-primary hover:border-primary flex items-center justify-center text-white/80 transition-all"
                 >
