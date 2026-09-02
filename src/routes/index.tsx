@@ -193,8 +193,6 @@ const RESULTS = [
   },
 ];
 
-const LOGOS = ["Nimbus", "Orbit", "Fitloop", "Vaultly", "Lernova", "Bytebite"];
-
 /* ---------- Page ---------- */
 function HomePage() {
   useReveal();
@@ -448,25 +446,6 @@ function HomePage() {
               View Our Work
               <I.arrow width="16" height="16" />
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Trusted by */}
-      <section className="py-10 md:py-12 bg-[color:var(--color-surface)] border-y border-border">
-        <div className="container-x">
-          <p className="text-center text-xs font-semibold tracking-widest text-subtle uppercase">
-            Trusted by ambitious teams worldwide
-          </p>
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center">
-            {LOGOS.map((l) => (
-              <div
-                key={l}
-                className="grayscale-logo text-center text-lg font-bold tracking-tight text-navy"
-              >
-                {l}
-              </div>
-            ))}
           </div>
         </div>
       </section>

@@ -32,7 +32,7 @@ export const WHAT_WE_BUILD = [
     icon: Icon.saas,
     title: "Custom Software Development",
     desc: "Turn your business idea or requirements into reliable, production-ready software designed around the way your business actually works.",
-    tags: ["Web Applications", "Business Software", "Custom Platforms"],
+    tags: ["Business Software", "Custom Platforms"],
     href: "/services/custom-software-development",
   },
   {
