@@ -10,11 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as CaseStudiesIndexRouteImport } from './routes/case-studies/index'
+import { Route as CaseStudiesSlugRouteImport } from './routes/case-studies/$slug'
+import { Route as ServicesBackendApiDevelopmentRouteImport } from './routes/services/backend-api-development'
+import { Route as ServicesCustomSoftwareDevelopmentRouteImport } from './routes/services/custom-software-development'
+import { Route as ServicesSaasMvpDevelopmentRouteImport } from './routes/services/saas-mvp-development'
+import { Route as ServicesWebApplicationDevelopmentRouteImport } from './routes/services/web-application-development'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -22,31 +40,128 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CaseStudiesIndexRoute = CaseStudiesIndexRouteImport.update({
+  id: '/case-studies/',
+  path: '/case-studies/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesSlugRoute = CaseStudiesSlugRouteImport.update({
+  id: '/case-studies/$slug',
+  path: '/case-studies/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesBackendApiDevelopmentRoute =
+  ServicesBackendApiDevelopmentRouteImport.update({
+    id: '/services/backend-api-development',
+    path: '/services/backend-api-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesCustomSoftwareDevelopmentRoute =
+  ServicesCustomSoftwareDevelopmentRouteImport.update({
+    id: '/services/custom-software-development',
+    path: '/services/custom-software-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesSaasMvpDevelopmentRoute =
+  ServicesSaasMvpDevelopmentRouteImport.update({
+    id: '/services/saas-mvp-development',
+    path: '/services/saas-mvp-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesWebApplicationDevelopmentRoute =
+  ServicesWebApplicationDevelopmentRouteImport.update({
+    id: '/services/web-application-development',
+    path: '/services/web-application-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/services/backend-api-development': typeof ServicesBackendApiDevelopmentRoute
+  '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/saas-mvp-development': typeof ServicesSaasMvpDevelopmentRoute
+  '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
+  '/case-studies/': typeof CaseStudiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/services/backend-api-development': typeof ServicesBackendApiDevelopmentRoute
+  '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/saas-mvp-development': typeof ServicesSaasMvpDevelopmentRoute
+  '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
+  '/case-studies': typeof CaseStudiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/case-studies/$slug': typeof CaseStudiesSlugRoute
+  '/services/backend-api-development': typeof ServicesBackendApiDevelopmentRoute
+  '/services/custom-software-development': typeof ServicesCustomSoftwareDevelopmentRoute
+  '/services/saas-mvp-development': typeof ServicesSaasMvpDevelopmentRoute
+  '/services/web-application-development': typeof ServicesWebApplicationDevelopmentRoute
+  '/case-studies/': typeof CaseStudiesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/case-studies/$slug'
+    | '/services/backend-api-development'
+    | '/services/custom-software-development'
+    | '/services/saas-mvp-development'
+    | '/services/web-application-development'
+    | '/case-studies/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml'
-  id: '__root__' | '/' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/case-studies/$slug'
+    | '/services/backend-api-development'
+    | '/services/custom-software-development'
+    | '/services/saas-mvp-development'
+    | '/services/web-application-development'
+    | '/case-studies'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/sitemap.xml'
+    | '/case-studies/$slug'
+    | '/services/backend-api-development'
+    | '/services/custom-software-development'
+    | '/services/saas-mvp-development'
+    | '/services/web-application-development'
+    | '/case-studies/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  CaseStudiesSlugRoute: typeof CaseStudiesSlugRoute
+  ServicesBackendApiDevelopmentRoute: typeof ServicesBackendApiDevelopmentRoute
+  ServicesCustomSoftwareDevelopmentRoute: typeof ServicesCustomSoftwareDevelopmentRoute
+  ServicesSaasMvpDevelopmentRoute: typeof ServicesSaasMvpDevelopmentRoute
+  ServicesWebApplicationDevelopmentRoute: typeof ServicesWebApplicationDevelopmentRoute
+  CaseStudiesIndexRoute: typeof CaseStudiesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +173,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -65,12 +194,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/case-studies/': {
+      id: '/case-studies/'
+      path: '/case-studies'
+      fullPath: '/case-studies/'
+      preLoaderRoute: typeof CaseStudiesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies/$slug': {
+      id: '/case-studies/$slug'
+      path: '/case-studies/$slug'
+      fullPath: '/case-studies/$slug'
+      preLoaderRoute: typeof CaseStudiesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/backend-api-development': {
+      id: '/services/backend-api-development'
+      path: '/services/backend-api-development'
+      fullPath: '/services/backend-api-development'
+      preLoaderRoute: typeof ServicesBackendApiDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/custom-software-development': {
+      id: '/services/custom-software-development'
+      path: '/services/custom-software-development'
+      fullPath: '/services/custom-software-development'
+      preLoaderRoute: typeof ServicesCustomSoftwareDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/saas-mvp-development': {
+      id: '/services/saas-mvp-development'
+      path: '/services/saas-mvp-development'
+      fullPath: '/services/saas-mvp-development'
+      preLoaderRoute: typeof ServicesSaasMvpDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/web-application-development': {
+      id: '/services/web-application-development'
+      path: '/services/web-application-development'
+      fullPath: '/services/web-application-development'
+      preLoaderRoute: typeof ServicesWebApplicationDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  CaseStudiesSlugRoute: CaseStudiesSlugRoute,
+  ServicesBackendApiDevelopmentRoute: ServicesBackendApiDevelopmentRoute,
+  ServicesCustomSoftwareDevelopmentRoute:
+    ServicesCustomSoftwareDevelopmentRoute,
+  ServicesSaasMvpDevelopmentRoute: ServicesSaasMvpDevelopmentRoute,
+  ServicesWebApplicationDevelopmentRoute:
+    ServicesWebApplicationDevelopmentRoute,
+  CaseStudiesIndexRoute: CaseStudiesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

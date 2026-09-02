@@ -12,7 +12,19 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const entries: SitemapEntry[] = [{ path: "/", changefreq: "weekly", priority: "1.0" }];
+        const entries: SitemapEntry[] = [
+          { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/services/custom-software-development", changefreq: "monthly", priority: "0.8" },
+          { path: "/services/saas-mvp-development", changefreq: "monthly", priority: "0.8" },
+          { path: "/services/web-application-development", changefreq: "monthly", priority: "0.8" },
+          { path: "/services/backend-api-development", changefreq: "monthly", priority: "0.8" },
+          { path: "/case-studies", changefreq: "monthly", priority: "0.7" },
+          { path: "/case-studies/echo-polymer-industries", changefreq: "monthly", priority: "0.6" },
+          { path: "/case-studies/nebula-orthosys", changefreq: "monthly", priority: "0.6" },
+          { path: "/case-studies/blanconite-artistry-hub", changefreq: "monthly", priority: "0.6" },
+          { path: "/about", changefreq: "monthly", priority: "0.5" },
+          { path: "/contact", changefreq: "monthly", priority: "0.5" },
+        ];
 
         const urls = entries.map((e) =>
           [
