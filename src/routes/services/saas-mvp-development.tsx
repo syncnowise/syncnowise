@@ -5,6 +5,7 @@ import CTABand from "@/components/site/CTABand";
 import ProcessSteps from "@/components/site/ProcessSteps";
 import RelatedLinks from "@/components/site/RelatedLinks";
 import RelatedCaseStudies from "@/components/site/RelatedCaseStudies";
+import ServiceFAQ, { type ServiceFAQItem } from "@/components/site/ServiceFAQ";
 import { CASE_STUDIES } from "@/data/content";
 import { buildHeadMeta } from "@/lib/seo";
 import { breadcrumbList, jsonLdGraph, serviceNode, webPageNode } from "@/lib/schema";
@@ -36,6 +37,58 @@ export const Route = createFileRoute("/services/saas-mvp-development")({
 });
 
 const relatedCaseStudy = CASE_STUDIES.find((c) => c.slug === "nebula-orthosys")!;
+
+const FAQ_ITEMS: ServiceFAQItem[] = [
+  {
+    question: "What should an MVP include?",
+    answer:
+      "An MVP should focus on the core problem you're solving and the functionality needed to test whether your product direction works — not every feature you can imagine for the eventual product. The goal is a working version real users can actually use, so you can validate the idea before investing in a full feature set. Anything that isn't essential to proving that core value can usually wait for a later version.",
+  },
+  {
+    question: "How do you decide what to build first for an MVP?",
+    answer:
+      "We start by understanding the problem you're solving and who it's for, then use that to define scope and priorities before any development begins. What's essential for a first version depends entirely on your specific product and users, so this is worked out together rather than following a fixed template — the goal is agreeing on a scope and plan before we start building.",
+  },
+  {
+    question: "Is an MVP the same as a finished SaaS product?",
+    answer:
+      "No — an MVP is an initial working version built to validate your core product direction, not a complete product with every capability a mature SaaS platform would eventually have. It's meant to be functional and real enough to test with actual users, while leaving room for the product to grow based on what you learn. Not every MVP needs to become a full SaaS business — for some projects, validating the idea is the goal in itself.",
+  },
+  {
+    question: "Can an MVP evolve into a larger SaaS product?",
+    answer: (
+      <>
+        Yes — this is one of the reasons we treat SaaS and MVP work as one continuous service rather
+        than two separate ones. An MVP built with the eventual product in mind can act as the
+        foundation for a larger SaaS platform, with further development, features, and scale added
+        as the product grows. The backend and infrastructure choices made early on matter here — our{" "}
+        <a
+          href="/services/backend-api-development"
+          className="text-primary font-semibold hover:underline"
+        >
+          Backend &amp; API Development
+        </a>{" "}
+        page covers how we approach that side of scaling a product.
+      </>
+    ),
+  },
+  {
+    question: "How much does SaaS or MVP development cost?",
+    answer: (
+      <>
+        MVP and SaaS projects vary widely in cost because what needs to be built varies widely — a
+        narrow MVP testing one core feature is a very different project from a fuller SaaS platform.
+        Rather than quoting a fixed number upfront, we scope the work around your requirements,
+        complexity, timeline, and goals, and provide a clear proposal before development begins. If
+        you have a specific idea in mind,{" "}
+        <a href="/contact" className="text-primary font-semibold hover:underline">
+          contact us
+        </a>{" "}
+        and we'll talk through what it would actually take to build it.
+      </>
+    ),
+  },
+];
 
 function Page() {
   return (
@@ -116,6 +169,8 @@ function Page() {
           />
         </div>
       </section>
+
+      <ServiceFAQ title="SaaS & MVP Development FAQs" items={FAQ_ITEMS} />
 
       <CTABand title="Building a SaaS product or MVP?" buttonLabel="Discuss Your Project" />
     </PageShell>
