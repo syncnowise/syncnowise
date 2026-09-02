@@ -5,6 +5,7 @@ import CTABand from "@/components/site/CTABand";
 import ProcessSteps from "@/components/site/ProcessSteps";
 import RelatedLinks from "@/components/site/RelatedLinks";
 import RelatedCaseStudies from "@/components/site/RelatedCaseStudies";
+import ServiceFAQ, { type ServiceFAQItem } from "@/components/site/ServiceFAQ";
 import { CAPABILITIES, CASE_STUDIES } from "@/data/content";
 import { buildHeadMeta } from "@/lib/seo";
 import { breadcrumbList, jsonLdGraph, serviceNode, webPageNode } from "@/lib/schema";
@@ -43,6 +44,56 @@ const capability = CAPABILITIES.find((c) => c.title === "Web Applications")!;
 const relatedCaseStudies = CASE_STUDIES.filter((c) =>
   ["echo-polymer-industries", "blanconite-artistry-hub", "nebula-orthosys"].includes(c.slug),
 );
+
+const FAQ_ITEMS: ServiceFAQItem[] = [
+  {
+    question: "What is web application development?",
+    answer:
+      "A web application is software that runs in the browser rather than needing to be installed — think customer portals, dashboards, or internal tools that people log into and interact with, rather than a static informational website. The web applications we build are designed around real business and product requirements, and typically involve frontend development, APIs, authentication, and integrations with other systems, rather than just a page for browsing.",
+  },
+  {
+    question: "What types of web applications can you build?",
+    answer:
+      "Based on the case studies we can show, this ranges from business and product-focused websites — like a manufacturing catalogue presenting technical specifications — to e-commerce and brand stores, to browser-based platforms with logins and dashboards used daily by staff, such as a practice management system. Across all of these, the common ingredients are frontend development, APIs, authentication where the application needs logins, and integrations with other systems.",
+  },
+  {
+    question: "How do you approach building a web application?",
+    answer:
+      "Every web application project follows the same process we use for all our work: we start by understanding your business, users, and requirements, then define scope and technical approach before development begins. From there, we build in focused stages with regular progress updates, and support doesn't have to stop at launch — we can continue with improvements and maintenance as your application evolves.",
+  },
+  {
+    question: "Can you improve or extend an existing web application?",
+    answer: (
+      <>
+        Yes — this is part of how we approach web application work generally. Our process doesn't
+        stop at launch: the same team that builds a web application can continue with improvements,
+        maintenance, monitoring, and further development as your needs change, rather than treating
+        launch as the end of the relationship. If you're looking to extend or improve something you
+        already have, the best next step is to tell us more about it via{" "}
+        <a href="/contact" className="text-primary font-semibold hover:underline">
+          Contact
+        </a>{" "}
+        so we can understand what's involved.
+      </>
+    ),
+  },
+  {
+    question: "How much does web application development cost?",
+    answer: (
+      <>
+        Web application projects range from a small internal dashboard to a full platform with
+        authentication and multiple integrations, so cost depends entirely on what's actually being
+        built. Rather than fixed packages, we scope each project around your specific requirements,
+        complexity, and goals, then provide a clear proposal before development begins. To get a
+        real answer for your project,{" "}
+        <a href="/contact" className="text-primary font-semibold hover:underline">
+          get in touch
+        </a>{" "}
+        and describe what you're trying to build.
+      </>
+    ),
+  },
+];
 
 function Page() {
   return (
@@ -121,6 +172,8 @@ function Page() {
           />
         </div>
       </section>
+
+      <ServiceFAQ title="Web Application Development FAQs" items={FAQ_ITEMS} />
 
       <CTABand title="Building a web application?" buttonLabel="Discuss Your Project" />
     </PageShell>
